@@ -17,7 +17,7 @@ type Combination struct {
 }
 
 func main() {
-	log.Println("Minecraft Construction")
+	log.Println("2x2 Lego Construction")
 
 	startPos := "30_30_30"
 
@@ -64,7 +64,7 @@ func main() {
 	// #################
 
 	// Now run through the different combinations
-	for i := 2; i <= 5; i++ {
+	for i := 2; i <= 9; i++ {
 
 		// initialise some vars
 		currentKeyStartsWith := fmt.Sprintf("%02d", i)

@@ -68,7 +68,7 @@ func incrementBrick(c Combination, cMap *sync.Map, moves *sync.Map, nomoves *syn
 		if !ok {
 			panic("Can't find centre")
 		}
-		u, ok := tmp.([]float64)
+		u, ok := tmp.([3]float64)
 		if !ok {
 			panic("Centre conversion error")
 		}
@@ -80,7 +80,7 @@ func incrementBrick(c Combination, cMap *sync.Map, moves *sync.Map, nomoves *syn
 			if !ok {
 				panic("Can't find centre")
 			}
-			v, ok := tmp.([]float64)
+			v, ok := tmp.([3]float64)
 			if !ok {
 				panic("Centre conversion error")
 			}
