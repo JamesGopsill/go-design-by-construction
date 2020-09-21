@@ -8,8 +8,8 @@ import (
 // moveMap creates the moves that one person can make from one brick to another
 func moveMap() (m sync.Map) {
 
-	bw := 2 // brick height
-	bh := 2 // brick width
+	// bw := 2 // brick height
+	// bh := 2 // brick width
 
 	var fromKey string
 	var toMoves []string
@@ -21,15 +21,31 @@ func moveMap() (m sync.Map) {
 				fromKey = fmt.Sprintf("%v_%v_%v", fromX, fromY, fromZ)
 				toMoves = nil
 
-				for toX := fromX - bw + 1; toX < fromX+bw; toX++ {
-					for toY := fromY - bh + 1; toY < fromY+bh; toY++ {
+				// All potential moves
+				/*
+					for toX := fromX - bw + 1; toX < fromX+bw; toX++ {
+						for toY := fromY - bh + 1; toY < fromY+bh; toY++ {
 
-						// Add the moves
-						toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", toX, toY, fromZ+1))
-						toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", toX, toY, fromZ-1))
+							// Add the moves
+							toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", toX, toY, fromZ+1))
+							//toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", toX, toY, fromZ-1))
 
+						}
 					}
-				}
+				*/
+
+				// To studs of existing brick
+				toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", fromX-1, fromY, fromZ+1))
+				toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", fromX-1, fromY, fromZ-1))
+
+				toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", fromX+1, fromY, fromZ+1))
+				toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", fromX+1, fromY, fromZ-1))
+
+				toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", fromX, fromY+1, fromZ+1))
+				toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", fromX, fromY+1, fromZ-1))
+
+				toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", fromX, fromY-1, fromZ+1))
+				toMoves = append(toMoves, fmt.Sprintf("%v_%v_%v", fromX, fromY-1, fromZ-1))
 
 				m.Store(fromKey, toMoves)
 			}
